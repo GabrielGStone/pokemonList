@@ -1,11 +1,11 @@
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import usePokemon from "../../hooks/usePokemon";
-import { RootState } from "../../state";
+// import { RootState } from "../../state";
 import { favoriteActions } from "../../state/actions";
 
 const List = () => {
@@ -14,9 +14,9 @@ const List = () => {
   const [pokemons, setPokemons] = useState<responseType | undefined>();
   const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
 
-  const favoritePokemons = useSelector(
-    (state: RootState) => state.favorite.favorites
-  );
+  // const favoritePokemons = useSelector(
+  //   (state: RootState) => state.favorite.favorites
+  // );  redux-react não utilizado ao criar o hook useLocalStorage
 
   const pokemonList = async () => {
     const res = await getPokemon();
@@ -54,6 +54,12 @@ const List = () => {
         {/* <button onClick={() => dispatch(favoriteActions.removeAllFavorites())}>
           remover favoritos
         </button>  (funciona apenas para o persist do reduxtoolkit feito anteriormente*/}
+        {/* <h3>favoritos</h3>
+        <ul>
+          {favorites.map((data: string) => {
+            return <li>{data}</li>;
+          })}
+        </ul> */}
         <InfiniteScroll
           dataLength={pokemons?.results.length || 10}
           next={getNextPokemons}

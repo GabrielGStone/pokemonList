@@ -11,9 +11,9 @@ const Header: FC<HeaderProps> = ({ isHome }) => {
   return (
     <>
       {isHome ? (
-        <button onClick={() => navigate("/list")}>list</button>
+        <button onClick={() => navigate("/list")}>go to list {"->"}</button>
       ) : (
-        <button onClick={() => navigate("/")}>home</button>
+        <button onClick={() => navigate("/")}>go to home {"<-"}</button>
       )}
     </>
   );
