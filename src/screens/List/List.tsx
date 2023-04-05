@@ -1,3 +1,4 @@
+import useLocalStorage from "../../hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +12,8 @@ const List = () => {
   const dispatch = useDispatch();
   const { getPokemon } = usePokemon();
   const [pokemons, setPokemons] = useState<responseType | undefined>();
+  const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
+
   const favoritePokemons = useSelector(
     (state: RootState) => state.favorite.favorites
   );
@@ -18,7 +21,6 @@ const List = () => {
   const pokemonList = async () => {
     const res = await getPokemon();
     setPokemons(res);
-    console.log("a:", res);
   };
 
   useEffect(() => {
@@ -36,6 +38,12 @@ const List = () => {
 
   const addFavorite = (name: string) => {
     dispatch(favoriteActions.toggleFavorite(name));
+
+    setFavorites(
+      favorites.includes(name)
+        ? favorites.filter((favorite) => favorite !== name)
+        : [...favorites, name]
+    );
   };
 
   return (
@@ -43,6 +51,9 @@ const List = () => {
       <Layout>
         <Header />
         <h1>LISTA</h1>
+        {/* <button onClick={() => dispatch(favoriteActions.removeAllFavorites())}>
+          remover favoritos
+        </button>  (funciona apenas para o persist do reduxtoolkit feito anteriormente*/}
         <InfiniteScroll
           dataLength={pokemons?.results.length || 10}
           next={getNextPokemons}
@@ -78,8 +89,8 @@ const List = () => {
                     margin: 8,
                     cursor: "pointer",
                     border: "1px solid #000",
-                    fontWeight: favoritePokemons.includes(name) ? "600" : "300",
-                    backgroundColor: favoritePokemons.includes(name)
+                    fontWeight: favorites.includes(name) ? "600" : "300",
+                    backgroundColor: favorites.includes(name)
                       ? "#eaff00"
                       : "#fff",
                   }}

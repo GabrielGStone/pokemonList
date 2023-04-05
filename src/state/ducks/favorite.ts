@@ -12,7 +12,10 @@ const favoriteSlice = createSlice({
   name: "favorite",
   initialState,
   reducers: {
-    pokemonlist: (state, action) => {},
+    removeAllFavorites: (state) => {
+      state.favorites = [];
+    },
+
     toggleFavorite: (state, action) => {
       if (state.favorites && state.favorites.includes(action.payload)) {
         state.favorites = state.favorites.filter(
