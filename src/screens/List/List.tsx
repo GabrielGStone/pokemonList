@@ -28,8 +28,10 @@ const List = () => {
 
   const getNextPokemons = async () => {
     const nextPokemons = await getPokemon(pokemons?.next);
-    console.log("next:", nextPokemons);
-    setPokemons(pokemons);
+    setPokemons({
+      ...nextPokemons,
+      results: [...(pokemons?.results || []), ...nextPokemons.results],
+    });
   };
 
   const addFavorite = (name: string) => {
@@ -42,7 +44,7 @@ const List = () => {
         <Header />
         <h1>LISTA</h1>
         <InfiniteScroll
-          dataLength={20}
+          dataLength={pokemons?.results.length || 10}
           next={getNextPokemons}
           hasMore={true}
           loader={
@@ -77,6 +79,9 @@ const List = () => {
                     cursor: "pointer",
                     border: "1px solid #000",
                     fontWeight: favoritePokemons.includes(name) ? "600" : "300",
+                    backgroundColor: favoritePokemons.includes(name)
+                      ? "#eaff00"
+                      : "#fff",
                   }}
                   onClick={() => addFavorite(name)}
                   key={name}
