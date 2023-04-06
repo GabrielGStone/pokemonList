@@ -1,12 +1,23 @@
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import usePokemon from "../../hooks/usePokemon";
-import { RootState } from "../../state";
+// import { RootState } from "../../state";
 import { favoriteActions } from "../../state/actions";
+import { Image, Spinner, Text } from "@chakra-ui/react";
+import {
+  FavoriteImage,
+  GridCard,
+  PokemonCard,
+  PokemonText,
+  Title,
+} from "./styles";
+import addLeadingZeros from "utils/addLeadingZeros";
+import "./styles.css";
+import star from "../../assets/pokeball.png";
 
 const List = () => {
   const dispatch = useDispatch();
@@ -14,9 +25,9 @@ const List = () => {
   const [pokemons, setPokemons] = useState<responseType | undefined>();
   const [favorites, setFavorites] = useLocalStorage<string[]>("favorites", []);
 
-  const favoritePokemons = useSelector(
-    (state: RootState) => state.favorite.favorites
-  );
+  // const favoritePokemons = useSelector(
+  //   (state: RootState) => state.favorite.favorites
+  // );
 
   const pokemonList = async () => {
     const res = await getPokemon();
@@ -50,57 +61,48 @@ const List = () => {
     <>
       <Layout>
         <Header />
-        <h1>LISTA</h1>
-        {/* <button onClick={() => dispatch(favoriteActions.removeAllFavorites())}>
+        <Title>LISTA</Title>
+        {/* <Button onClick={() => dispatch(favoriteActions.removeAllFavorites())}>
           remover favoritos
-        </button>  (funciona apenas para o persist do reduxtoolkit feito anteriormente*/}
+        </Button>  (funciona apenas para o persist do reduxtoolkit feito anteriormente*/}
         <InfiniteScroll
           dataLength={pokemons?.results.length || 10}
           next={getNextPokemons}
           hasMore={true}
-          loader={
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "56px",
-                fontSize: "16px",
-                fontFamily: "Montserrat",
-                fontWeight: 500,
-              }}
-            >
-              carregando...
-            </div>
-          }
+          loader={<Spinner />}
           endMessage={
-            <p style={{ textAlign: "center" }}>
+            <Text style={{ textAlign: "center" }}>
               <b>Yay! You have seen it all</b>
-            </p>
+            </Text>
           }
         >
-          {pokemons &&
-            pokemons.results.map((data: any) => {
-              const { name } = data;
-              return (
-                <div
-                  style={{
-                    width: 100,
-                    margin: 8,
-                    cursor: "pointer",
-                    border: "1px solid #000",
-                    fontWeight: favorites.includes(name) ? "600" : "300",
-                    backgroundColor: favorites.includes(name)
-                      ? "#eaff00"
-                      : "#fff",
-                  }}
-                  onClick={() => addFavorite(name)}
-                  key={name}
-                >
-                  {name}
-                </div>
-              );
-            })}
+          {pokemons && (
+            <GridCard className="pokemonCard">
+              {pokemons.results.map((data: any, index: number) => {
+                const { name } = data;
+                const pokemonLink = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${addLeadingZeros(
+                  index + 1
+                )}.png`;
+                return (
+                  <PokemonCard
+                    style={{
+                      fontWeight: favorites.includes(name) ? "600" : "300",
+                      backgroundColor: favorites.includes(name)
+                        ? "#e5f594"
+                        : "#fff",
+                    }}
+                    _hover={{ width: "105%", height: "103%" }}
+                    onClick={() => addFavorite(name)}
+                    key={name}
+                  >
+                    {favorites.includes(name) && <FavoriteImage src={star} />}
+                    <Image src={pokemonLink} alt={name} />
+                    <PokemonText>{name}</PokemonText>
+                  </PokemonCard>
+                );
+              })}
+            </GridCard>
+          )}
         </InfiniteScroll>
       </Layout>
     </>

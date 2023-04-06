@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { NavigationButton } from "./styles";
 
 interface HeaderProps {
   isHome?: boolean;
@@ -11,9 +12,13 @@ const Header: FC<HeaderProps> = ({ isHome }) => {
   return (
     <>
       {isHome ? (
-        <button onClick={() => navigate("/list")}>list</button>
+        <NavigationButton onClick={() => navigate("/list")}>
+          go to list {"->"}
+        </NavigationButton>
       ) : (
-        <button onClick={() => navigate("/")}>home</button>
+        <NavigationButton onClick={() => navigate("/")}>
+          go to home {"<-"}
+        </NavigationButton>
       )}
     </>
   );
