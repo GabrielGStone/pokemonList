@@ -12,7 +12,7 @@ const Home = () => {
           <Header isHome />
           <Title>Pokedex - Lista de Pokemons</Title>
           <Text>Bem-vindo à Pokedex! Explore e salve seu pokemon favorito</Text>
-          <Image src={pokeball} />
+          <Image style={{ width: 250 }} src={pokeball} />
         </Container>
       </Layout>
     </>
