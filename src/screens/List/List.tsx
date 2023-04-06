@@ -91,7 +91,7 @@ const List = () => {
                         ? "#e5f594"
                         : "#fff",
                     }}
-                    _hover={{ width: "105%", height: "103%" }}
+                    _hover={{ width: "103%", height: "103%" }}
                     onClick={() => addFavorite(name)}
                     key={name}
                   >

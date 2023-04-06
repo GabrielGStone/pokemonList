@@ -3,7 +3,7 @@ import { Box, Card, chakra, Image, Text } from "@chakra-ui/react";
 export const GridCard = chakra(Box, {
   baseStyle: {
     width: "100%",
-    paddingX: "2%",
+    paddingX: "3%",
     display: "grid",
     gap: "20px",
     gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))",
@@ -17,9 +17,6 @@ export const PokemonCard = chakra(Card, {
     width: "100%",
     cursor: "pointer",
     border: "1px solid #000",
-    __hover: {
-      width: "165px",
-    },
   },
 });
 
