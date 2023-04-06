@@ -6,7 +6,7 @@ export const LayoutBox = chakra(Box, {
     flexDirection: "column",
     justifyContent: "center",
     padding: "10px 20%",
-    backgroundColor: "#ddf",
+    backgroundColor: "#eef",
     minHeight: "100vh",
   },
 });
