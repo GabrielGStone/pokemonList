@@ -1,8 +1,8 @@
 import { Image, Text } from "@chakra-ui/react";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
+import Header from "components/Header";
+import Layout from "components/Layout";
 import { Container, Title } from "./styles";
-import pokeball from "../../assets/pokeball.png";
+import pokeball from "assets/pokeball.png";
 
 const Home = () => {
   return (

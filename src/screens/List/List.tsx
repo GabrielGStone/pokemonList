@@ -1,10 +1,10 @@
-import useLocalStorage from "../../hooks/useLocalStorage";
+import useLocalStorage from "hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch } from "react-redux";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import usePokemon from "../../hooks/usePokemon";
+import Header from "components/Header";
+import Layout from "components/Layout";
+import usePokemon from "hooks/usePokemon";
 // import { RootState } from "../../state";
 import { favoriteActions } from "../../state/actions";
 import { Image, Spinner, Text } from "@chakra-ui/react";
@@ -17,7 +17,7 @@ import {
 } from "./styles";
 import addLeadingZeros from "utils/addLeadingZeros";
 import "./styles.css";
-import star from "../../assets/pokeball.png";
+import star from "assets/pokeball.png";
 
 const List = () => {
   const dispatch = useDispatch();
@@ -85,6 +85,7 @@ const List = () => {
                 )}.png`;
                 return (
                   <PokemonCard
+                    role="article"
                     style={{
                       fontWeight: favorites.includes(name) ? "600" : "300",
                       backgroundColor: favorites.includes(name)
