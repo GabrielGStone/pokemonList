@@ -10,7 +10,7 @@ const Home = () => {
       <Layout>
         <Container>
           <Header isHome />
-          <Title>Pokedex - Lista de Pokemons</Title>
+          <Title>Pokedex - Lista de Pokemons v0.1</Title>
           <Text>Bem-vindo à Pokedex! Explore e salve seu pokemon favorito</Text>
           <Image style={{ width: 250 }} src={pokeball} />
         </Container>
