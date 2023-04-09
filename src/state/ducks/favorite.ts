@@ -25,6 +25,9 @@ const favoriteSlice = createSlice({
         state.favorites.push(action.payload)
       }
     },
+    getState: (state, action) => {
+      state.favorites = action.payload
+    },
   },
 })
 

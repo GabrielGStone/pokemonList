@@ -1,4 +1,4 @@
-import { Card, Text, chakra } from '@chakra-ui/react'
+import { Card, Image, Text, chakra } from '@chakra-ui/react'
 
 export const PokemonCardContainer = chakra(Card, {
   baseStyle: {

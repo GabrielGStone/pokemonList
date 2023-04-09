@@ -20,11 +20,10 @@ const PokemonCard: FC<CardProps> = ({
       role="article"
       style={{
         fontWeight: favoritePokemons.includes(name) ? '600' : '300',
-        backgroundColor: favoritePokemons.includes(name) ? '#e5f594' : '#fff',
+        backgroundColor: favoritePokemons?.includes(name) ? '#e5f594' : '#fff',
       }}
       _hover={{ width: '103%', height: '103%' }}
       onClick={() => addFavorite(name)}
-      key={name}
     >
       {favoritePokemons.includes(name) && <FavoriteImage src={star} />}
       <Image src={pokemonLink} alt={name} />

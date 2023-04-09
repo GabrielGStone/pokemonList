@@ -33,12 +33,14 @@ const PokemonList: FC<ListProps> = ({
               index + 1
             )}.png`
             return (
-              <PokemonCard
-                name={name}
-                pokemonLink={pokemonLink}
-                favoritePokemons={favoritePokemons}
-                addFavorite={addFavorite}
-              />
+              <div key={index}>
+                <PokemonCard
+                  name={name}
+                  pokemonLink={pokemonLink}
+                  favoritePokemons={favoritePokemons}
+                  addFavorite={addFavorite}
+                />
+              </div>
             )
           })}
         </GridCard>
