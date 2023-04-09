@@ -1,5 +1,5 @@
 .pokemonCard:hover :not(:hover){
-    opacity: 0.7
+    opacity: 0.8
 }
 @media (max-width: 1000px) {
     .pokemonCard:hover :not(:hover){
