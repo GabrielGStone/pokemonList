@@ -1,20 +1,28 @@
 React Pokemon List
-Este é um projeto simples que lista pokemons usando a PokeAPI, uma API de informações sobre pokemons. A lista é carregada usando a biblioteca React e a rolagem infinita é implementada com a biblioteca react-infinite-scroll-component.
+Este é um projeto simples que lista Pokemons utilizando a PokeAPI, uma API de informações sobre Pokemons. A lista é carregada utilizando a biblioteca React e a rolagem infinita é implementada com a biblioteca react-infinite-scroll-component. Além disso, há a opção de marcar um Pokemon como favorito, que é gerenciado utilizando o estado global com Redux.
 
-Além disso, há a opção de marcar um pokemon como favorito, que é gerenciado com o estado global usando Redux.
-
-Tecnologias utilizadas
+Tecnologias Utilizadas
 React
 Redux
 react-infinite-scroll-component
 PokeAPI
-Como executar o projeto
-Clone o repositório em sua máquina local
-Instale as dependências com npm install ou yarn
-Execute o projeto com npm start ou yarn start
-Acesse o projeto em http://localhost:3000/
-Aprendizados adquiridos
-Utilização do React com a PokeAPI
-Implementação de rolagem infinita em lista com react-infinite-scroll-component
-Utilização do Redux para gerenciar o estado global do favorito do pokemon
-Trabalho com componentes e props em React
+react-testing-library
+jest
+Custom Hook com localStorage
+Chakra UI
+Como Executar o Projeto
+Clone o repositório em sua máquina local.
+Instale as dependências com npm install ou yarn.
+Execute o projeto com npm start ou yarn start.
+Acesse o projeto em http://localhost:3000/.
+Como Executar os Testes
+Certifique-se de que as dependências foram instaladas com npm install ou yarn.
+Execute os testes com npm test ou yarn test.
+Aprendizados Adquiridos
+Utilização do React com a PokeAPI.
+Implementação de rolagem infinita em lista com react-infinite-scroll-component.
+Utilização do Redux para gerenciar o estado global do favorito do Pokemon.
+Trabalho com componentes e props em React.
+Utilização de testes com react-testing-library e jest para garantir o comportamento correto dos componentes.
+Criação de um custom hook para gerenciar o estado do localStorage.
+Utilização da biblioteca Chakra UI para estilizar os componentes de forma fácil e eficiente.
