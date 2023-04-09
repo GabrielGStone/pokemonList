@@ -6,10 +6,10 @@ Este é um projeto simples que lista Pokemons utilizando a PokeAPI, uma API de i
 - React
 - Redux
 - react-infinite-scroll-component
-- PokeAPI
+- API consumption
 - react-testing-library
 - jest
-- Custom Hook com localStorage
+- Custom Hook -> useLocalStorage
 - Chakra UI
 
 ## Como Executar o Projeto
