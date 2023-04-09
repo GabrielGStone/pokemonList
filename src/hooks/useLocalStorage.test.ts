@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'state/store'
+import { useSelector } from 'react-redux'
+import * as redux from 'react-redux'
 import { favoriteActions } from 'state/actions'
 import useLocalStorage from './useLocalStorage'
 
@@ -21,42 +21,38 @@ describe('useLocalStorage', () => {
     jest.clearAllMocks()
   })
 
-  it('deve carregar o estado dos favoritos do local storage', () => {
-    const mockDispatch = jest.fn()
-    const mockUseSelector = useSelector as jest.Mock
-    mockUseSelector.mockImplementation((selectorFn) =>
-      selectorFn({ favorite: { favorites: [] } } as RootState)
-    )
-    useDispatch.mockReturnValue(mockDispatch)
+  it('deve salvar o estado no local storage quando os favoritos mudam', () => {
+    const mockFavorites = [{ id: 1, name: 'Pikachu' }]
+    const dispatch = jest.fn()
 
-    mockLocalStorage.getItem.mockReturnValue(JSON.stringify(mockFavorites))
+    jest
+      .spyOn(redux, 'useSelector')
+      .mockReturnValue({ favorite: { favorites: mockFavorites } })
 
-    renderHook(() => useLocalStorage())
+    const { result } = renderHook(() => useLocalStorage())
 
-    expect(mockLocalStorage.getItem).toHaveBeenCalledWith('pokemon')
-    expect(mockDispatch).toHaveBeenCalledWith(
-      favoriteActions.getState(mockFavorites)
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      'pokemon',
+      JSON.stringify(mockFavorites)
     )
   })
 
-  it('deve salvar o estado dos favoritos no local storage', () => {
-    const mockUseSelector = useSelector as jest.Mock
-    mockUseSelector.mockImplementation((selectorFn) =>
-      selectorFn({ favorite: { favorites: mockFavorites } } as RootState)
-    )
+  it('deve carregar o estado do local storage na montagem do componente', () => {
+    const mockFavorites = [{ id: 1, name: 'Pikachu' }]
+    localStorage.setItem('pokemon', JSON.stringify(mockFavorites))
+    const dispatch = jest.fn()
 
     renderHook(() => useLocalStorage())
 
-    expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-      'pokemon',
-      JSON.stringify(mockFavorites)
+    expect(dispatch).toHaveBeenCalledWith(
+      favoriteActions.getState(mockFavorites)
     )
   })
 
   it('não deve salvar um estado vazio no local storage', () => {
     const mockUseSelector = useSelector as jest.Mock
     mockUseSelector.mockImplementation((selectorFn) =>
-      selectorFn({ favorite: { favorites: [] } } as RootState)
+      selectorFn({ favorite: { favorites: [] } })
     )
 
     renderHook(() => useLocalStorage())

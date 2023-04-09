@@ -14,7 +14,7 @@ const favoriteSlice = createSlice({
   reducers: {
     removeAllFavorites: (state) => {
       state.favorites = []
-    },
+    }, //remover todos os favoritos, usado para debugar
 
     toggleFavorite: (state, action) => {
       if (state.favorites && state.favorites.includes(action.payload)) {

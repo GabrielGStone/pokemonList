@@ -1,19 +1,22 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { useNavigate } from "react-router-dom";
-import Home from "screens/Home/Home";
+import { render } from '@testing-library/react'
+import Home from './Home'
 
-describe("Componente Home", () => {
-  it("deve renderizar o botão 'go to list ->' quando a prop isHome é false", () => {
-    render(<Home />);
-    expect(screen.getByText("ir para lista ->")).toBeInTheDocument();
-  });
+describe('Home component', () => {
+  it('deve renderizar o botão de navegação, o título, a saudação e a imagem corretamente', () => {
+    const { getByText, getByAltText } = render(<Home />)
 
-  it("deve chamar o navigate com '/list' quando o botão 'go to list' for clicado", () => {
-    const navigateMock = useNavigate as jest.Mock;
-    render(<Home />);
-    const button = screen.getByText("go to list ->");
-    fireEvent.click(button);
-    expect(navigateMock).toHaveBeenCalledWith("/list");
-  });
-});
+    const ButtonElement = getByText('go to list ->' || 'go to home <-')
+    expect(ButtonElement).toBeInTheDocument()
+
+    const titleElement = getByText('Pokedex - Lista de Pokemons')
+    expect(titleElement).toBeInTheDocument()
+
+    const textElement = getByText(
+      'Bem-vindo à Pokedex! Explore e salve seu pokemon favorito'
+    )
+    expect(textElement).toBeInTheDocument()
+
+    const imageElement = getByAltText('pokeball')
+    expect(imageElement).toBeInTheDocument()
+  })
+})

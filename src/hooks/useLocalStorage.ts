@@ -11,13 +11,11 @@ const useLocalStorage = () => {
 
   const saveState = (data: any) => {
     if (!data.length) return
-    console.log('saving to local-storage', data)
     localStorage.setItem('pokemon', JSON.stringify(data))
   }
 
   const loadState = () => {
     let pokemon: any = localStorage.getItem('pokemon')
-    console.log('got from local storage:', pokemon)
     if (!pokemon) return
     pokemon = JSON.parse(pokemon)
     dispatch(favoriteActions.getState(pokemon))
