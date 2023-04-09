@@ -38,7 +38,7 @@ const List = () => {
 
   const addFavorite = (name: string) => {
     dispatch(favoriteActions.toggleFavorite(name))
-    if (favoritePokemons.length == 1) {
+    if (favoritePokemons.length === 1) {
       window.localStorage.clear()
     }
   }

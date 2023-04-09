@@ -4,6 +4,7 @@ import Layout from './Layout'
 describe('Componente Layout', () => {
   it('deve renderizar children', () => {
     const { getByText } = render(<Layout>Teste</Layout>)
-    expect(getByText('Teste')).toBeInTheDocument()
+    const text = getByText('Teste')
+    expect(text).toBeInTheDocument()
   })
 })
