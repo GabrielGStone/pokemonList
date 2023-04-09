@@ -1,27 +1,23 @@
-import { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { NavigationButton } from "./styles";
+import { FC } from 'react'
+import { NavigationButton } from './styles'
+import { Link } from 'react-router-dom'
 
 interface HeaderProps {
-  isHome?: boolean;
+  isHome?: boolean
 }
 
 const Header: FC<HeaderProps> = ({ isHome }) => {
-  const navigate = useNavigate();
-
+  const route = {
+    path: isHome ? '/list' : '/',
+    label: isHome ? 'go to list ->' : 'go to home <-',
+  }
   return (
     <>
-      {isHome ? (
-        <NavigationButton onClick={() => navigate("/list")}>
-          go to list {"->"}
-        </NavigationButton>
-      ) : (
-        <NavigationButton onClick={() => navigate("/")}>
-          go to home {"<-"}
-        </NavigationButton>
-      )}
+      <Link style={{ textDecoration: 'none', color: '#000' }} to={route.path}>
+        <NavigationButton>{route.label}</NavigationButton>
+      </Link>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
