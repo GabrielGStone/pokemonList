@@ -27,7 +27,7 @@ Este é um projeto simples que lista Pokemons utilizando a PokeAPI, uma API de i
 - Utilização do React com a PokeAPI.
 - Implementação de rolagem infinita em lista com react-infinite-scroll-component.
 - Utilização do Redux para gerenciar o estado global do favorito do Pokemon.
-- Alias mudando o caminho de componentes, state, hooks para "components/*, state/*, hooks/*"
+- Alias mudando o caminho de componentes, state, hooks para "components/*, state/*, hooks/*", conseguindo utilizar em qualquer parte da aplicação dessa maneira.
 - Utilização de testes com react-testing-library e jest para garantir o comportamento correto dos componentes.
 - Criação de um custom hook para gerenciar o estado do localStorage.
 - Utilização da biblioteca Chakra UI para estilizar os componentes de forma fácil e eficiente.
