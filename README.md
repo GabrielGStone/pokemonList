@@ -15,8 +15,8 @@ Este é um projeto simples que lista Pokemons utilizando a PokeAPI, uma API de i
 
 ## Como Executar o Projeto
 1. Clone o repositório em sua máquina local.
-2. Instale as dependências com `npm install` ou `yarn`.
-3. Execute o projeto com `npm start` ou `yarn start`.
+2. Instale as dependências com `yarn`.
+3. Execute o projeto com`yarn start`.
 4. Acesse o projeto em `http://localhost:3000/`.
 
 ## Como Executar os Testes
